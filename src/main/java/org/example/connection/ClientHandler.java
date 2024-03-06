@@ -69,6 +69,34 @@ public class ClientHandler implements Runnable {
             out = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
 
+            //Log in
+            boolean isLogged;
+            do{
+                do{
+                    isLogged =false;
+                    user = (User) in.readObject();
+                    synchronized (clients) {
+                        while (clients.containsKey(user)) {
+                            out.writeObject(false);
+                            out.flush();
+                            user = (User) in.readObject();
+                        }
+                        out.writeObject(true);
+                        out.flush();
+                        clients.put(user, out);
+
+                        if ((boolean) in.readObject()) {
+
+
+                        } else {
+                            isLogged = true;
+                        }
+                    }
+                } while(!isLogged);
+            } while (!isLogged);
+
+
+
             //User Log in and Room creation
             /*boolean isLogged;
             do {
@@ -165,7 +193,7 @@ public class ClientHandler implements Runnable {
                     }
                 }while (!isLeaving);
             }while(!isLogged);*/
-        } catch (IOException/* | ClassNotFoundException*/ e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             if (user != null) {

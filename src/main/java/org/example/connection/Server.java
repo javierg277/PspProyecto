@@ -17,8 +17,7 @@ public class Server {
     private static final int MAX_CLIENTS = 100;
 
     static Map<User, ObjectOutputStream> clients = new HashMap<>();
-    static Map<User, ATM> clientRooms = new HashMap<>();
-    static Map<ATM, Set<User>> rooms = new HashMap<>();
+    static Map<ATM, User> ATMUsers = new HashMap<>();
     static ExecutorService pool = Executors.newFixedThreadPool(MAX_CLIENTS);
 
     public static void main(String[] args) {
