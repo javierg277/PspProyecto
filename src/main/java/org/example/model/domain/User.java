@@ -1,28 +1,29 @@
 package org.example.model.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class User {
+public class User implements Serializable {
     private int id;
-    private String username;
+    private String name;
     private String password;
     private double money;
 
     public User() {
         this.id = -1;
-        this.username = "";
+        this.name = "";
         this.password = "";
         this.money = 0.0;
     }
-    public User(String username, String password, double money) {
+    public User(String name, String password, double money) {
         this.id = -1;
-        this.username = username;
+        this.name = name;
         this.password = password;
         this.money = money;
     }
-    public User(int id, String username, String password, double money) {
+    public User(int id, String name, String password, double money) {
         this.id = id;
-        this.username = username;
+        this.name = name;
         this.password = password;
         this.money = money;
     }
@@ -35,12 +36,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {
@@ -64,11 +65,11 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(username, user.username);
+        return Objects.equals(name, user.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username);
+        return Objects.hash(name);
     }
 }

@@ -6,7 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 public class Client {
-    private static final String SERVER_ADDRESS = "172.16.15.165";
+    private static final String SERVER_ADDRESS = "192.168.1.102";
     private static final int SERVER_PORT = 8080;
     private ObjectOutputStream out;
     private ObjectInputStream in;
